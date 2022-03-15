@@ -15,7 +15,13 @@ class TasksService {
   }
   async edit(body, id) {
     const original = await dbContext.Tasks.findById(id)
-
+    if (original.creatorId.toString() !== body.creatorId) {
+      throw new Forbidden('Your not Allowed')
+    }
+    original.name = body.name ? body.name : original.name
+    original.weight = body.weight ? body.weight : original.weight
+    original.sprintId = body.sprintId ? body.sprintId : original.sprintId
+    original.isComplete = body.isComplete !== '' ? body.isComplete : original.isComplete
     await original.save()
     return original
   }
