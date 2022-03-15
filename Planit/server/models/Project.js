@@ -16,11 +16,4 @@ ProjectSchema.virtual('creator', {
     foreignField: '_id',
     justOne: true,
     ref: 'Profile'
-},
-
-    ProjectSchema.virtual('id', {
-        localField: '',
-        foreignField: '_id',
-        justOne: true,
-        ref: 'Profile'
-    })
+})

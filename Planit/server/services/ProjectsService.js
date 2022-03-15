@@ -3,11 +3,11 @@ import { dbContext } from "../db/DbContext";
 
 class ProjectsService {
     async getAll(query = {}) {
-        const projects = await dbContext.Projects.find(query)
+        const projects = await dbContext.Projects.find(query).populate('creator')
         return projects
     }
     async getById(id) {
-        const project = await dbContext.Projects.findById(id)
+        const project = await dbContext.Projects.findById(id).populate('creator')
         if (!project) {
             throw new BadRequest('Invalid Id')
         }
