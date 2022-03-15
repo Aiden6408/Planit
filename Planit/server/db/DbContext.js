@@ -7,8 +7,8 @@ import { ValueSchema } from '../models/Value'
 
 
 class DbContext {
-  Tasks = mongoose.model('Tasks', TasksSchema);
-  Sprints = mongoose.model('Sprints', SprintsSchema);
+  Tasks = mongoose.model('Task', TasksSchema);
+  Sprints = mongoose.model('Sprint', SprintsSchema);
   Projects = mongoose.model('Project', ProjectSchema);
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);

@@ -4,12 +4,11 @@ const ObjectId = mongoose.Types.ObjectId
 
 export const SprintsSchema = new Schema({
     name: { type: String, required: true },
-    projectId: { type: ObjectId, required: true, ref: 'Project' },
+    projectId: { type: ObjectId, ref: 'Project' },
     creatorId: { type: ObjectId, required: true, ref: 'Profile' },
 },
     { timestamps: true, toJSON: { virtuals: true } })
 SprintsSchema.virtual('project', {
-
     localField: 'projectId',
     foreignField: '_id',
     justOne: true,
