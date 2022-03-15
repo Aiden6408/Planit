@@ -2,7 +2,7 @@ import BaseController from "../utils/BaseController";
 
 export class NotesController extends BaseController {
   constructor() {
-    super();
+    super('api/projects/:projectId/notes');
     this.router;
   }
 }

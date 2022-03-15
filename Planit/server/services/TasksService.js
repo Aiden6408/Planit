@@ -2,7 +2,7 @@ import { dbContext } from "../db/DbContext"
 
 class TasksService {
   async getAll(query = {}) {
-    const tasks = await dbContext.Tasks
+    const tasks = await dbContext.Tasks.find(query).populate('project, ')
   }
   async create(body) {
     const tasks = await dbContext.Tasks
