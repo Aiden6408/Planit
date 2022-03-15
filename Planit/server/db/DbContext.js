@@ -4,6 +4,7 @@ import { ProjectSchema } from '../models/Project';
 import { ValueSchema } from '../models/Value'
 
 class DbContext {
+  Sprints = mongoose.model('sprints', SprintsSchema);
   Projects = mongoose.model('Project', ProjectSchema);
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
