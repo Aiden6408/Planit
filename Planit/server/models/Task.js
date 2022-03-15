@@ -16,5 +16,14 @@ export const TasksSchema = new Schema(
 
 TasksSchema.virtual('project', {
   localField: 'projectId',
-  foreignField: '_id'
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Project'
+})
+
+TasksSchema.virtual('sprint', {
+  localField: 'sprintId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Sprint'
 })
