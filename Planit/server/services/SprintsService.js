@@ -14,7 +14,11 @@ class SprintsService {
         return sprints
     }
     async remove(userId, id) {
-        const sprintsToDelete = await dbContext.Sprints.findById
+        const sprintsToDelete = await dbContext.Sprints.findById(id)
+        if (sprintsToDelete.creatorId.tostring()
+            !== userId) {
+            throw new Forbidden
+        } await dbContext.Sprints.findByIdAndDelete(id)
     }
 }
 
