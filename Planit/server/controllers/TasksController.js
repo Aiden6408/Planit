@@ -7,14 +7,15 @@ export class TasksController extends BaseController {
     super('api/projects/:projectId/tasks')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('/:id', this.getAll)
+      .get('', this.getAll)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.remove)
   }
   async getAll(req, res, next) {
     try {
-      const tasks = await tasksService.getAll(req.query)
+      const projectId = req.params.projectId
+      const tasks = await tasksService.getAll(projectId)
       return res.send(tasks)
     } catch (error) {
       next(error)
@@ -22,6 +23,7 @@ export class TasksController extends BaseController {
   }
   async create(req, res, next) {
     try {
+      req.body.projectId = req.params.projectId
       req.body.creatorId = req.userInfo.id
       const task = await tasksService.create(req.body)
       return res.send(task)
