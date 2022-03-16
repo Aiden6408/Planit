@@ -51,11 +51,11 @@
     <div class="home-card p-5 bg-primary text-light rounded elevation-3">
       <h1>Please Login to Continue</h1>
     </div>
-    <Modal id="create-project">
-      <template #title>Create Project</template>
-      <template #body>Body goes here</template>
-    </Modal>
   </div>
+  <Modal id="create-project">
+    <template #title>Create Project</template>
+    <template #body>Body goes here</template>
+  </Modal>
 </template>
 
 <script>
