@@ -8,5 +8,10 @@ class ProjectsService {
     logger.log(res.data)
     AppState.projects = res.data
   }
+  async deleteProject(id) {
+    const res = await api.delete(`api/projects/${id}`)
+    logger.log(res.data)
+    AppState.projects.filter(p => p.id != id)
+  }
 }
 export const projectsService = new ProjectsService()

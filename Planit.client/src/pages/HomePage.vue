@@ -51,7 +51,6 @@
 <script>
 import { computed } from '@vue/reactivity'
 import { AppState } from '../AppState'
-import { watchEffect } from "@vue/runtime-core"
 
 export default {
   setup() {
