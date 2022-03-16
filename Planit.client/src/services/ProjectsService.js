@@ -8,11 +8,20 @@ class ProjectsService {
     logger.log(res.data)
     AppState.projects = res.data
   }
+
+  async getById(id) {
+
+  }
+  async createProject(body) {
+    const res = await api.post('api/projects', body)
+    logger.log('[createProject]', res.data)
+    AppState.projects = [...AppState.projects, res.data]
+    return res.data
+  }
   async deleteProject(id) {
     const res = await api.delete(`api/projects/${id}`)
     logger.log(res.data)
     AppState.projects = AppState.projects.filter(p => p.id != id)
-    //FIXME check if solves router push issue rather than another api request
   }
 }
 export const projectsService = new ProjectsService()

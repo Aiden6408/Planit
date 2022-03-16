@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 d-flex mt-5">
-        <h1>title</h1>
+        <h1>{{ project?.name }}</h1>
         <i
           @click="deleteProject"
           class="mdi mdi-delete-forever mdi-36px text-success selectable"
@@ -44,11 +44,13 @@ import { tasksService } from "../services/TasksService";
 import { notesService } from "../services/NotesService";
 import { projectsService } from "../services/ProjectsService"
 export default {
+
   setup() {
     const route = useRoute()
     const router = useRouter()
     watchEffect(async () => {
       try {
+        await projectsService.getAllProjects(route.params.id)
         await sprintsService.getSprints(route.params.id)
         await tasksService.getTasks(route.params.id)
         await notesService.getNotes(route.params.id)

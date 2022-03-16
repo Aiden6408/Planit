@@ -41,22 +41,26 @@
             id="authDropdown"
           >
             <img
-              :src="user.picture"
-              alt="user photo"
+              :src="account.picture"
+              alt="account photo"
               height="40"
-              class="rounded"
+              class="rounded bigger"
             />
-            <span class="mx-3 text-dark">{{ user.name }}</span>
+            <span class="mx-3 text-dark">{{ account.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
             aria-labelledby="authDropdown"
           >
-            <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item list-group-item-action hoverable">
-                Manage Account
+            <div>
+              <div
+                class="list-group-item list-group-item-action hoverable"
+                data-bs-toggle="modal"
+                data-bs-target="#edit-account"
+              >
+                Edit Account
               </div>
-            </router-link>
+            </div>
             <div
               class="
                 list-group-item list-group-item-action
@@ -83,6 +87,7 @@ export default {
   setup() {
     return {
       user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
       async login() {
         AuthService.loginWithPopup()
       },
@@ -117,5 +122,9 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+.bigger {
+  height: 80px;
+  width: 80px;
 }
 </style>

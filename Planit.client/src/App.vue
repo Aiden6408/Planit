@@ -4,6 +4,10 @@
   </header>
   <main>
     <router-view />
+    <Modal id="edit-account">
+      <template #title>Edit Account Information</template>
+      <template #body><EditAccountForm /></template>
+    </Modal>
   </main>
 </template>
 
