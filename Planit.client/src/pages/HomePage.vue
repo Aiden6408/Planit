@@ -19,7 +19,13 @@
               <h5>Title</h5>
               <p class="m-0">Description</p>
             </div>
-            <button class="btn btn-secondary">Create Project</button>
+            <button
+              class="btn btn-secondary"
+              data-bs-toggle="modal"
+              data-bs-target="#create-project"
+            >
+              Create Project
+            </button>
           </div>
           <div class="col-4 border-bottom border-light pt-5">Name</div>
           <div class="col-4 border-bottom border-light pt-5">Members</div>
@@ -45,20 +51,43 @@
     <div class="home-card p-5 bg-primary text-light rounded elevation-3">
       <h1>Please Login to Continue</h1>
     </div>
+    <Modal id="create-project">
+      <template #title>Create Project</template>
+      <template #body>Body goes here</template>
+    </Modal>
   </div>
 </template>
 
 <script>
 import { computed } from '@vue/reactivity'
 import { AppState } from '../AppState'
+import { projectsService } from "../services/ProjectsService"
+import { watchEffect } from "@vue/runtime-core"
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
 
 export default {
   setup() {
+    watchEffect(async () => {
+      try {
+        await projectsService.getAllProjects()
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    })
 
     return {
       user: computed(() => AppState.user),
-      projects: computed(() => AppState.projects)
-
+      projects: computed(() => AppState.projects),
+      async createProject() {
+        try {
+          await projectsService.createProject()
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      }
     }
   }
 }
