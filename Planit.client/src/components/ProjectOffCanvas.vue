@@ -1,14 +1,4 @@
 <template>
-  <button
-    class="btn btn-primary"
-    type="button"
-    data-bs-toggle="offcanvas"
-    data-bs-target="#offcanvasLeft"
-    aria-controls="offcanvasLeft"
-  >
-    Toggle right offcanvas
-  </button>
-
   <div
     class="offcanvas offcanvas-start"
     tabindex="-1"
@@ -16,7 +6,7 @@
     aria-labelledby="offcanvasLeftLabel"
   >
     <div class="offcanvas-header">
-      <h5 id="offcanvasLeftLabel">Offcanvas Left</h5>
+      <h5 id="offcanvasLeftLabel">Projects</h5>
       <button
         type="button"
         class="btn-close text-reset"
@@ -24,18 +14,44 @@
         aria-label="Close"
       ></button>
     </div>
-    <div class="offcanvas-body">...</div>
+    <div class="offcanvas-body">
+      <div class="d-flex justify-content-between border border-bottom">
+        <p>Name</p>
+        <p>Started</p>
+      </div>
+      <div v-for="p in projects" :key="p.id">
+        <router-link :to="{ name: 'Project', params: { id: p.id } }">
+          <div
+            data-bs-dismiss="offcanvas"
+            class="d-flex justify-content-between selectable"
+          >
+            <span>
+              {{ p.name }}
+            </span>
+            <span>
+              {{ p.createdAt }}
+            </span>
+          </div>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
 
 <script>
-import { ref } from "@vue/reactivity"
+import { computed, ref } from "@vue/reactivity"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
+import { AppState } from '../AppState'
+
 export default {
+
+
   setup() {
-    return {}
+    return {
+      projects: computed(() => AppState.projects)
+    }
   }
 }
 </script>

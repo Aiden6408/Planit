@@ -9,7 +9,18 @@
           title="Delete Project"
         ></i>
       </div>
-      <p>project description</p>
+      <p>{{ project?.description }}</p>
+      <div>
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasLeft"
+          aria-controls="offcanvasLeft"
+        >
+          Projects List
+        </button>
+      </div>
       <div class="col-12 d-flex justify-content-between">
         <div>
           <h5>Sprints</h5>
@@ -19,7 +30,13 @@
           </p>
         </div>
         <div>
-          <button class="btn btn-info">Add sprint</button>
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#create-sprint"
+            class="btn btn-info"
+          >
+            Add sprint
+          </button>
         </div>
       </div>
     </div>
@@ -29,6 +46,11 @@
       </div>
     </div>
   </div>
+  <Modal id="create-sprint">
+    <template #title>Create Sprint</template>
+    <template #body><CreateSprintForm /></template>
+  </Modal>
+  <ProjectOffCanvas />
 </template>
 
 
@@ -43,14 +65,16 @@ import { sprintsService } from "../services/SprintsService";
 import { tasksService } from "../services/TasksService";
 import { notesService } from "../services/NotesService";
 import { projectsService } from "../services/ProjectsService"
+
 export default {
+
 
   setup() {
     const route = useRoute()
     const router = useRouter()
     watchEffect(async () => {
       try {
-        await projectsService.getAllProjects(route.params.id)
+        projectsService.setActive(route.params.id)
         await sprintsService.getSprints(route.params.id)
         await tasksService.getTasks(route.params.id)
         await notesService.getNotes(route.params.id)
@@ -64,6 +88,8 @@ export default {
       sprints: computed(() => AppState.sprints),
       tasks: computed(() => AppState.tasks),
       notes: computed(() => AppState.notes),
+      projects: computed(() => AppState.projects),
+      project: computed(() => AppState.activeProject),
 
       async deleteProject() {
         try {

@@ -5,12 +5,13 @@ import { api } from "./AxiosService"
 class ProjectsService {
   async getAllProjects() {
     const res = await api.get('api/projects')
-    logger.log(res.data)
+    logger.log('[getprojects]', res.data)
+
     AppState.projects = res.data
   }
 
-  async getById(id) {
-
+  setActive(id) {
+    AppState.activeProject = AppState.projects.find(p => p.id === id)
   }
   async createProject(body) {
     const res = await api.post('api/projects', body)
