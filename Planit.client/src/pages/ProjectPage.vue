@@ -21,7 +21,7 @@
     </div>
     <div class="row">
       <div v-for="s in sprints" :key="s.id" class="col-12">
-        <SprintCard />
+        <SprintCard :sprint="s" />
       </div>
     </div>
   </div>
@@ -29,20 +29,33 @@
 
 
 <script>
-import { computed, ref } from "@vue/reactivity"
+import { computed } from "@vue/reactivity"
 import Pop from "../utils/Pop"
 import { logger } from "../utils/Logger"
 import { useRoute } from "vue-router"
 import { AppState } from '../AppState'
-import { onMounted } from '@vue/runtime-core'
+import { watchEffect } from '@vue/runtime-core'
 import { sprintsService } from "../services/SprintsService";
+import { tasksService } from "../services/TasksService";
+import { notesService } from "../services/NotesService";
 export default {
   setup() {
     const route = useRoute()
-    await sprintsService.getSprints(route.params.id)
+    watchEffect(async () => {
+      try {
+        await sprintsService.getSprints(route.params.id)
+        await tasksService.getTasks(route.params.id)
+        await notesService.getNotes(route.params.id)
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    })
 
     return {
       sprints: computed(() => AppState.sprints),
+      tasks: computed(() => AppState.tasks),
+      notes: computed(() => AppState.notes)
 
 
     }
