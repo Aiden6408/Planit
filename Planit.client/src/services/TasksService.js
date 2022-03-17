@@ -8,6 +8,10 @@ class TasksService {
     logger.log('[getTasks]', res.data)
     AppState.tasks = res.data
   }
+  getWeight(sprintId) {
+    //FIXME 
+    let weightTasks = AppState.tasks.filter(t => t.sprintId == sprintId)
+  }
   async createTask(projectId, body) {
 
     const res = await api.post(`api/projects/${projectId}/tasks`, body)

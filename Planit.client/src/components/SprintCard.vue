@@ -2,7 +2,7 @@
   <div class="row bg-primary text-light shadow rounded-top mt-2 p-1">
     <div class="col-6 d-flex selectable">
       <p>{{ sprint.name }}</p>
-      <p>{{ sprint.weight }}</p>
+      <p>{{ sprintWeight }}</p>
       <i class="mdi mdi-weight fs-5"></i>
     </div>
     <div class="col-6 d-flex justify-content-end">
@@ -46,6 +46,8 @@ import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 import { sprintsService } from '../services/SprintsService'
 import { useRoute } from 'vue-router'
+import { watchEffect } from "@vue/runtime-core"
+import { tasksService } from "../services/TasksService"
 export default {
   props: {
     sprint: {
@@ -56,7 +58,19 @@ export default {
 
   setup(props) {
     const route = useRoute()
+
+    //FIXME fix weight adding
+    watchEffect(async () => {
+      try {
+        let weight = tasksService.getWeight(props.sprint.id)
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    })
+
     return {
+      sprintWeight,
       props,
       sprints: computed(() => AppState.sprints),
       tasks: computed(() => AppState.tasks),

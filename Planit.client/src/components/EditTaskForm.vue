@@ -17,6 +17,14 @@
       placeholder="Task weight..."
     />
     <input
+      v-model="editable.sprintId"
+      type="text"
+      class="form-control my-2"
+      name="sprintId"
+      id="sprintId"
+      placeholder="Task sprintId..."
+    />
+    <input
       type="checkbox"
       class="form-check-input"
       name="isComplete"
