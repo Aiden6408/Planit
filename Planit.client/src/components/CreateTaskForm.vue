@@ -47,7 +47,7 @@ export default {
       editable,
       async handleSubmit() {
         try {
-          editable.value.sprintId = AppState.activeSprintId
+          editable.value.sprintId = AppState.activeSprint.id
           await tasksService.createTask(route.params.id, editable.value)
           Modal.getOrCreateInstance(document.getElementById('add-task')).hide()
           editable.value = {}

@@ -80,7 +80,9 @@ export default {
 
       async deleteTask() {
         try {
-          await tasksService.deleteTask(route.params.id, props.task.id)
+          if (await Pop.confirm()) {
+            await tasksService.deleteTask(route.params.id, props.task.id)
+          }
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')

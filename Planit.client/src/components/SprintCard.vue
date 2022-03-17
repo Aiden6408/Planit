@@ -14,7 +14,8 @@
       >
         Add Task +
       </button>
-      <div>Task complete count</div>
+      <!-- FIXME stretch goal -->
+      <!-- <div>Task complete count</div> -->
     </div>
   </div>
   <div class="row bg-primary text-light shadow rounded-bottom mb-2 p-1">
@@ -28,9 +29,13 @@
       </div>
     </div>
     <div class="col-6 d-flex align-items-end justify-content-end">
-      <div class="d-flex">
-        <h5>Delete Sprint</h5>
-        <i @click="deleteSprint" class="mdi mdi-delete-forever selectable"></i>
+      <div
+        v-if="sprint.creatorId == account.id"
+        @click="deleteSprint"
+        class="d-flex selectable"
+      >
+        <h5 class="pe-2">Delete Sprint</h5>
+        <i class="mdi mdi-delete-forever" title="Delete sprint"></i>
       </div>
     </div>
   </div>
@@ -45,7 +50,6 @@ import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 import { sprintsService } from '../services/SprintsService'
 import { useRoute } from 'vue-router'
-import { watchEffect } from "@vue/runtime-core"
 import { tasksService } from "../services/TasksService"
 export default {
   props: {
@@ -58,29 +62,22 @@ export default {
   setup(props) {
     const route = useRoute()
 
-    // //FIXME fix weight adding
-    // watchEffect(async () => {
-    //   try {
-    //     let weight = 
-    //   } catch (error) {
-    //     logger.error(error)
-    //     Pop.toast(error.message, 'error')
-    //   }
-    // })
 
     return {
-      // sprintWeight,
       props,
+      account: computed(() => AppState.account),
       weight: computed(() => tasksService.getWeight(props.sprint.id)),
       sprints: computed(() => AppState.sprints),
       tasks: computed(() => AppState.tasks),
       pushId() {
-        AppState.activeSprintId = props.sprint.id
-        logger.log('[pushId]', AppState.activeSprintId)
+        AppState.activeSprint = props.sprint
+        logger.log('[pushId]', AppState.activeSprint.id)
       },
       async deleteSprint() {
         try {
-          await sprintsService.deleteSprint(route.params.id, props.sprint.id)
+          if (await Pop.confirm()) {
+            await sprintsService.deleteSprint(route.params.id, props.sprint.id)
+          }
         } catch (error) {
           logger.log(error.message)
           Pop.toast(error.message, 'error')

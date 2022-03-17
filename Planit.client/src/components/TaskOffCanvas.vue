@@ -6,12 +6,13 @@
     aria-labelledby="offcanvasRightLabel"
   >
     <div class="offcanvas-header">
-      <h5 id="offcanvasRightLabel">{{ activeTask.name }}</h5>
+      <h3 id="offcanvasRightLabel">{{ activeTask.name }}</h3>
       <button
         type="button"
         class="btn-close text-reset"
         data-bs-dismiss="offcanvas"
         aria-label="Close"
+        title="Close"
       ></button>
     </div>
     <div class="offcanvas-body">
@@ -60,6 +61,7 @@ export default {
     const editable = ref({})
     return {
       editable,
+      activeSprint: computed(() => AppState.activeSprintId),
       activeTask: computed(() => AppState.activeTask),
       notes: computed(() => AppState.notes),
       async handleSubmit() {
