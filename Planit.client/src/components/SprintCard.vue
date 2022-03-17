@@ -1,16 +1,21 @@
 <template>
   <div class="row bg-primary text-light shadow rounded-top mt-2 p-1">
-    <div class="col-6 d-flex selectable">
-      <p>{{ sprint.name }}</p>
-      <p>{{ weight }}</p>
+    <div class="col-6 p-2 d-flex align-items-center">
+      <h3 class="me-3">
+        <b>{{ sprint.name }}</b>
+      </h3>
+
       <i class="mdi mdi-weight fs-5"></i>
+      <h6 class="m-0 pt-1 ms-2">{{ weight }}</h6>
     </div>
-    <div class="col-6 d-flex justify-content-end">
+    <div class="col-6 d-flex align-items-end flex-column">
+      <i class="mdi mdi-close mdi-24px selectable" title="Delete sprint"></i>
+
       <button
         @click="pushId"
         data-bs-toggle="modal"
         data-bs-target="#add-task"
-        class="btn btn-light"
+        class="btn btn-info shadow selectable hoverable mt-2"
       >
         Add Task +
       </button>
@@ -19,7 +24,7 @@
     </div>
   </div>
   <div class="row bg-primary text-light shadow rounded-bottom mb-2 p-1">
-    <div class="col-6">
+    <div class="col-4">
       <div class="row">
         <div class="col-12" v-for="t in tasks" :key="t.id">
           <div v-if="t.sprintId == sprint.id">
@@ -33,10 +38,7 @@
         v-if="sprint.creatorId == account.id"
         @click="deleteSprint"
         class="d-flex selectable"
-      >
-        <h5 class="pe-2">Delete Sprint</h5>
-        <i class="mdi mdi-delete-forever" title="Delete sprint"></i>
-      </div>
+      ></div>
     </div>
   </div>
   <TaskOffCanvas />

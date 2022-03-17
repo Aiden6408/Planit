@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12 d-flex mt-5">
+      <div class="col-8 offset-2 d-flex mt-5">
         <h1>
           <b>{{ project?.name }}</b>
         </h1>
@@ -18,19 +18,21 @@
           title="Delete Project"
         ></i>
       </div>
-      <p>{{ project?.description }}</p>
-      <div>
-        <button
-          class="btn btn-info hoverable shadow"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasLeft"
-          aria-controls="offcanvasLeft"
-        >
-          Projects List
-        </button>
+      <div class="col-8 offset-2">
+        <p>{{ project?.description }}</p>
+        <div>
+          <button
+            class="btn btn-info hoverable shadow"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasLeft"
+            aria-controls="offcanvasLeft"
+          >
+            Projects List
+          </button>
+        </div>
       </div>
-      <div class="col-12 d-flex mt-5 justify-content-between">
+      <div class="col-8 offset-2 d-flex mt-5 justify-content-between">
         <div>
           <h1><b> Sprints </b></h1>
           <p>
@@ -50,7 +52,7 @@
       </div>
     </div>
     <div class="row">
-      <div v-for="s in sprints" :key="s.id" class="col-12">
+      <div v-for="s in sprints" :key="s.id" class="col-8 offset-2">
         <SprintCard :sprint="s" />
       </div>
     </div>
