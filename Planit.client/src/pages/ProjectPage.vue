@@ -46,6 +46,7 @@
       </div>
     </div>
   </div>
+
   <Modal id="create-sprint">
     <template #title>Create Sprint</template>
     <template #body><CreateSprintForm /></template>

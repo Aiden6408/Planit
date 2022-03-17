@@ -7,6 +7,7 @@
     </div>
     <div class="col-6 d-flex justify-content-end">
       <button
+        @click="pushId"
         data-bs-toggle="modal"
         data-bs-target="#add-task"
         class="btn btn-light"
@@ -18,7 +19,9 @@
   </div>
   <div class="row bg-primary text-light shadow rounded-bottom mb-2 p-1">
     <div class="col-6" v-for="t in tasks" :key="t.id">
-      <TaskTemplate :task="t" />
+      <div v-if="t.sprintId == sprint.id">
+        <TaskTemplate :task="t" />
+      </div>
     </div>
     <div class="col-6 d-flex align-items-end justify-content-end">
       <div class="d-flex">
@@ -29,7 +32,9 @@
   </div>
   <Modal id="add-task">
     <template #title> Add Task </template>
-    <template #body> <CreateTaskForm :sprint="props.sprint" /> </template>
+    <template #body>
+      <CreateTaskForm />
+    </template>
   </Modal>
 </template>
 
@@ -53,8 +58,12 @@ export default {
     const route = useRoute()
     return {
       props,
-
+      sprints: computed(() => AppState.sprints),
       tasks: computed(() => AppState.tasks),
+      pushId() {
+        AppState.activeSprintId = props.sprint.id
+        logger.log('[pushId]', AppState.activeSprintId)
+      },
       async deleteSprint() {
         try {
           await sprintsService.deleteSprint(route.params.id, props.sprint.id)

@@ -15,6 +15,19 @@ class TasksService {
     AppState.tasks = [...AppState.tasks, res.data]
 
   }
+  async deleteTask(projectId, taskId) {
+
+    const res = await api.delete(`api/projects/${projectId}/tasks/${taskId}`)
+    logger.log('[deleteTask]', res.data)
+    AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
+  }
+  async editTask(projectId, taskId, body) {
+    const update = AppState.tasks.findIndex(t => t.id == taskId)
+    const res = await api.put(`api/projects/${projectId}/tasks/${taskId}`, body)
+    logger.log('[editTask]', res.data)
+    AppState.tasks.splice(update, 1, res.data)
+    AppState.activeTask = res.data
+  }
 }
 
 export const tasksService = new TasksService()
