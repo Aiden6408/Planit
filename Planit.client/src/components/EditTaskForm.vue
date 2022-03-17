@@ -16,6 +16,7 @@
       id="weight"
       placeholder="Task weight..."
     />
+    <label for="isComplete">Task complete?</label>
     <input
       type="checkbox"
       class="form-check-input"
@@ -32,7 +33,9 @@
         name="sprintId"
         id="sprintId"
       >
-        <option v-for="s in sprints" :key="s.id">{{ s.id }}</option>
+        <option v-for="s in sprints" :key="s.id" :value="s.id">
+          {{ s.name }}
+        </option>
       </select>
     </div>
 
