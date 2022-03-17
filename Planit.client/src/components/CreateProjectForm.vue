@@ -7,6 +7,9 @@
       name="name"
       id="name"
       placeholder="Project name..."
+      required
+      minlength="3"
+      maxlength="10"
     />
     <input
       v-model="editable.description"
@@ -15,6 +18,7 @@
       name="description"
       id="description"
       placeholder="Project description..."
+      required
     />
     <div class="text-end">
       <button class="btn btn-info selectable">

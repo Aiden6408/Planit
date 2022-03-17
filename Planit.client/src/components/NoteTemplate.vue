@@ -1,5 +1,5 @@
 <template>
-  <div class="border-info border">
+  <div class="border-info border my-2 p-2">
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex">
         <div class="me-2">
@@ -7,7 +7,12 @@
         </div>
         <div>{{ note.creator.name }}</div>
       </div>
-      <i @click="deleteNote" class="mdi mdi-close-outline me-2 text-danger"></i>
+      <i
+        v-if="note.creatorId == account.id"
+        @click="deleteNote"
+        class="mdi mdi-close-outline text-danger"
+        title="Delete note"
+      ></i>
     </div>
     <div>{{ note.body }}</div>
   </div>
@@ -31,6 +36,7 @@ export default {
   setup(props) {
     const route = useRoute()
     return {
+      account: computed(() => AppState.account),
       notes: computed(() => AppState.notes),
       async deleteNote() {
         try {

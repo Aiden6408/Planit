@@ -27,14 +27,14 @@
           @click="setActiveTask"
           data-bs-toggle="modal"
           data-bs-target="#edit-task"
-          class="mdi mdi-pencil me-2 selectable"
+          class="mdi mdi-pencil me-2 selectable text-warning"
           title="Edit Task"
         ></div>
         <i
           v-if="task.creatorId == account?.id"
           @click="deleteTask"
           title="Delete Task"
-          class="mdi mdi-delete-forever selectable"
+          class="mdi mdi-delete-forever selectable text-danger"
         ></i>
       </div>
       <div>Created on {{ date }}</div>
@@ -75,6 +75,7 @@ export default {
       date,
       account: computed(() => AppState.account),
       setActiveTask() {
+        AppState.activeSprint = props.task.sprint
         AppState.activeTask = props.task
       },
 

@@ -7,6 +7,7 @@
       name="name"
       id="name"
       placeholder="Task name..."
+      required
     />
     <input
       v-model="editable.weight"
@@ -15,6 +16,7 @@
       name="weight"
       id="weight"
       placeholder="Task weight..."
+      required
     />
     <label for="isComplete">Task complete?</label>
     <input
@@ -24,6 +26,7 @@
       id="isComplete"
       value="checkedValue"
       v-model="editable.isComplete"
+      required
     />
     <div class="mb-3">
       <label for="sprintId" class="form-label">Sprint Id</label>
@@ -32,6 +35,7 @@
         class="form-control"
         name="sprintId"
         id="sprintId"
+        required
       >
         <option v-for="s in sprints" :key="s.id" :value="s.id">
           {{ s.name }}

@@ -7,6 +7,9 @@
       name="name"
       id="name"
       placeholder="Task Name..."
+      required
+      minlength="3"
+      maxlength="10"
     />
     <input
       v-model="editable.weight"
@@ -15,6 +18,7 @@
       name="weight"
       id="weight"
       placeholder="Task Weight..."
+      required
     />
 
     <div class="text-end">

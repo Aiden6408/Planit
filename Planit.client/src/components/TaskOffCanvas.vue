@@ -6,7 +6,12 @@
     aria-labelledby="offcanvasRightLabel"
   >
     <div class="offcanvas-header">
-      <h3 id="offcanvasRightLabel">{{ activeTask.name }}</h3>
+      <div class="d-flex fs-5" id="offcanvasRightLabel">
+        <span class="me-2">
+          {{ activeSprint.name }}
+        </span>
+        <span class="clip-text"> > {{ activeTask.name }} </span>
+      </div>
       <button
         type="button"
         class="btn-close text-reset"
@@ -16,7 +21,7 @@
       ></button>
     </div>
     <div class="offcanvas-body">
-      <div class="text-center border-bottom">Notes</div>
+      <div class="text-center border-bottom border-2 border-dark">Notes</div>
       <h5 class="mt-5">Add a note..</h5>
       <form
         @submit.prevent="handleSubmit"
@@ -28,11 +33,12 @@
           class="form-control me-2"
           name="note"
           id="note"
+          required
           placeholder="What do you want to say...? "
         />
 
         <div class="text-end">
-          <button class="btn btn-info selectable">
+          <button class="btn btn-info selectable" title="Add note">
             <i class="mdi mdi-plus"></i>
           </button>
         </div>
@@ -61,14 +67,14 @@ export default {
     const editable = ref({})
     return {
       editable,
-      activeSprint: computed(() => AppState.activeSprintId),
+      activeSprint: computed(() => AppState.activeSprint),
       activeTask: computed(() => AppState.activeTask),
       notes: computed(() => AppState.notes),
       async handleSubmit() {
         try {
           editable.value.taskId = AppState.activeTask.id
           await notesService.createNote(route.params.id, editable.value)
-
+          editable.value = {}
         } catch (error) {
 
         }

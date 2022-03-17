@@ -7,6 +7,7 @@
       name="name"
       id="name"
       placeholder="Project name..."
+      required
     />
     <input
       v-model="editable.picture"
@@ -15,6 +16,7 @@
       name="pictureUrl"
       id="pictureUrl"
       placeholder="Project pictureUrl..."
+      required
     />
     <div class="text-end">
       <button class="btn btn-info selectable">

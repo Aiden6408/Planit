@@ -7,6 +7,9 @@
       name="name"
       id="name"
       placeholder="Sprint name..."
+      required
+      minlength="3"
+      maxlength="10"
     />
 
     <div class="text-end">
