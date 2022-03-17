@@ -9,7 +9,7 @@
       placeholder="Project name..."
       required
       minlength="3"
-      maxlength="10"
+      maxlength="20"
     />
     <input
       v-model="editable.description"

@@ -9,7 +9,7 @@
       placeholder="Sprint name..."
       required
       minlength="3"
-      maxlength="10"
+      maxlength="20"
     />
 
     <div class="text-end">
@@ -40,7 +40,7 @@ export default {
         try {
           await sprintsService.createSprint(route.params.id, editable.value)
           Modal.getOrCreateInstance(document.getElementById('create-sprint')).hide()
-
+          editable.value = {}
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')

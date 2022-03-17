@@ -8,6 +8,8 @@
       id="name"
       placeholder="Task name..."
       required
+      minlength="3"
+      maxlength="20"
     />
     <input
       v-model="editable.weight"
