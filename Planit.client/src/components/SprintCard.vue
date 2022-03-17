@@ -2,7 +2,7 @@
   <div class="row bg-primary text-light shadow rounded-top mt-2 p-1">
     <div class="col-6 d-flex selectable">
       <p>{{ sprint.name }}</p>
-      <p>{{}}</p>
+      <p>{{ weight }}</p>
       <i class="mdi mdi-weight fs-5"></i>
     </div>
     <div class="col-6 d-flex justify-content-end">
@@ -61,7 +61,7 @@ export default {
     // //FIXME fix weight adding
     // watchEffect(async () => {
     //   try {
-    //     let weight = tasksService.getWeight(props.sprint.id)
+    //     let weight = 
     //   } catch (error) {
     //     logger.error(error)
     //     Pop.toast(error.message, 'error')
@@ -71,6 +71,7 @@ export default {
     return {
       // sprintWeight,
       props,
+      weight: computed(() => tasksService.getWeight(props.sprint.id)),
       sprints: computed(() => AppState.sprints),
       tasks: computed(() => AppState.tasks),
       pushId() {

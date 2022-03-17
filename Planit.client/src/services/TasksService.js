@@ -10,7 +10,10 @@ class TasksService {
   }
   getWeight(sprintId) {
     //FIXME 
+    let totalWeight = 0
     let weightTasks = AppState.tasks.filter(t => t.sprintId == sprintId)
+    weightTasks.forEach(t => totalWeight += t.weight)
+    return totalWeight
   }
   async createTask(projectId, body) {
 
