@@ -2,17 +2,26 @@
   <div class="container">
     <div class="row">
       <div class="col-12 d-flex mt-5">
-        <h1>{{ project?.name }}</h1>
+        <h1>
+          <b>{{ project?.name }}</b>
+        </h1>
         <i
           @click="deleteProject"
-          class="mdi mdi-delete-forever ms-5 mdi-36px text-success selectable"
+          class="
+            mdi mdi-delete-forever
+            ms-5
+            mdi-36px
+            text-primary
+            hoverable
+            selectable
+          "
           title="Delete Project"
         ></i>
       </div>
       <p>{{ project?.description }}</p>
       <div>
         <button
-          class="btn btn-primary"
+          class="btn btn-info hoverable shadow"
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasLeft"
@@ -23,7 +32,7 @@
       </div>
       <div class="col-12 d-flex mt-5 justify-content-between">
         <div>
-          <h5>Sprints</h5>
+          <h1><b> Sprints </b></h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente
             aliquid
@@ -33,7 +42,7 @@
           <button
             data-bs-toggle="modal"
             data-bs-target="#create-sprint"
-            class="btn btn-info"
+            class="btn btn-info shadow hoverable selectable"
           >
             Add sprint
           </button>
