@@ -7,7 +7,7 @@
   >
     <div class="offcanvas-header">
       <div class="d-flex fs-5" id="offcanvasRightLabel">
-        <span class="me-2">
+        <span class="me-2 clip-text">
           {{ activeSprint.name }}
         </span>
         <span class="clip-text"> > {{ activeTask.name }} </span>

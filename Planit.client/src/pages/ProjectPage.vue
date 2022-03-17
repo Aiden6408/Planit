@@ -6,6 +6,7 @@
           <b>{{ project?.name }}</b>
         </h1>
         <i
+          v-if="account.id == project?.creatorId"
           @click="deleteProject"
           class="
             mdi mdi-delete-forever

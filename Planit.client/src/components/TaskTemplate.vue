@@ -24,6 +24,7 @@
           <h5 class="me-2">{{ task.name }}</h5>
         </div>
         <div
+          v-if="account.id == task.creatorId"
           @click="setActiveTask"
           data-bs-toggle="modal"
           data-bs-target="#edit-task"
