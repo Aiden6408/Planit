@@ -14,6 +14,14 @@
         <i class="mdi mdi-weight"></i>
         <p>{{ task.isComplete }}</p>
       </div>
+      <button
+        @click="setActiveTask"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasRight"
+        class="btn btn-info"
+      >
+        See Details
+      </button>
       <div
         @click="setActiveTask"
         data-bs-toggle="modal"
@@ -22,10 +30,6 @@
       ></div>
     </div>
   </div>
-  <Modal id="edit-task">
-    <template #title>Edit Task</template>
-    <template #body><EditTaskForm /></template>
-  </Modal>
 </template>
 
 
@@ -49,6 +53,7 @@ export default {
       setActiveTask() {
         AppState.activeTask = props.task
       },
+
       async deleteTask() {
         try {
           await tasksService.deleteTask(route.params.id, props.task.id)

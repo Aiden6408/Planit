@@ -50,7 +50,7 @@ export default {
           editable.value.sprintId = AppState.activeSprintId
           await tasksService.createTask(route.params.id, editable.value)
           Modal.getOrCreateInstance(document.getElementById('add-task')).hide()
-
+          editable.value = {}
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')

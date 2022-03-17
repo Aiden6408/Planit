@@ -2,7 +2,7 @@
   <div class="row bg-primary text-light shadow rounded-top mt-2 p-1">
     <div class="col-6 d-flex selectable">
       <p>{{ sprint.name }}</p>
-      <p>{{ sprintWeight }}</p>
+      <p>{{}}</p>
       <i class="mdi mdi-weight fs-5"></i>
     </div>
     <div class="col-6 d-flex justify-content-end">
@@ -18,9 +18,13 @@
     </div>
   </div>
   <div class="row bg-primary text-light shadow rounded-bottom mb-2 p-1">
-    <div class="col-6" v-for="t in tasks" :key="t.id">
-      <div v-if="t.sprintId == sprint.id">
-        <TaskTemplate :task="t" />
+    <div class="col-6">
+      <div class="row">
+        <div class="col-12" v-for="t in tasks" :key="t.id">
+          <div v-if="t.sprintId == sprint.id">
+            <TaskTemplate :task="t" />
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-6 d-flex align-items-end justify-content-end">
@@ -30,12 +34,7 @@
       </div>
     </div>
   </div>
-  <Modal id="add-task">
-    <template #title> Add Task </template>
-    <template #body>
-      <CreateTaskForm />
-    </template>
-  </Modal>
+  <TaskOffCanvas />
 </template>
 
 
@@ -59,18 +58,18 @@ export default {
   setup(props) {
     const route = useRoute()
 
-    //FIXME fix weight adding
-    watchEffect(async () => {
-      try {
-        let weight = tasksService.getWeight(props.sprint.id)
-      } catch (error) {
-        logger.error(error)
-        Pop.toast(error.message, 'error')
-      }
-    })
+    // //FIXME fix weight adding
+    // watchEffect(async () => {
+    //   try {
+    //     let weight = tasksService.getWeight(props.sprint.id)
+    //   } catch (error) {
+    //     logger.error(error)
+    //     Pop.toast(error.message, 'error')
+    //   }
+    // })
 
     return {
-      sprintWeight,
+      // sprintWeight,
       props,
       sprints: computed(() => AppState.sprints),
       tasks: computed(() => AppState.tasks),

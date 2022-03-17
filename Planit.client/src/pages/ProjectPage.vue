@@ -46,7 +46,16 @@
       </div>
     </div>
   </div>
-
+  <Modal id="add-task">
+    <template #title> Add Task </template>
+    <template #body>
+      <CreateTaskForm />
+    </template>
+  </Modal>
+  <Modal id="edit-task">
+    <template #title>Edit Task</template>
+    <template #body><EditTaskForm /></template>
+  </Modal>
   <Modal id="create-sprint">
     <template #title>Create Sprint</template>
     <template #body><CreateSprintForm /></template>

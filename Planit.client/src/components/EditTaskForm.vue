@@ -17,14 +17,6 @@
       placeholder="Task weight..."
     />
     <input
-      v-model="editable.sprintId"
-      type="text"
-      class="form-control my-2"
-      name="sprintId"
-      id="sprintId"
-      placeholder="Task sprintId..."
-    />
-    <input
       type="checkbox"
       class="form-check-input"
       name="isComplete"
@@ -32,6 +24,17 @@
       value="checkedValue"
       v-model="editable.isComplete"
     />
+    <div class="mb-3">
+      <label for="sprintId" class="form-label">Sprint Id</label>
+      <select
+        v-model="editable.sprintId"
+        class="form-control"
+        name="sprintId"
+        id="sprintId"
+      >
+        <option v-for="s in sprints" :key="s.id">{{ s.id }}</option>
+      </select>
+    </div>
 
     <label class="ps-2 form-check-label" for="isComplete"> Is Complete? </label>
     <div class="text-end">
