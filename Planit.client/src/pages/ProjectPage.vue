@@ -5,7 +5,7 @@
         <h1>{{ project?.name }}</h1>
         <i
           @click="deleteProject"
-          class="mdi mdi-delete-forever mdi-36px text-success selectable"
+          class="mdi mdi-delete-forever ms-5 mdi-36px text-success selectable"
           title="Delete Project"
         ></i>
       </div>
@@ -21,7 +21,7 @@
           Projects List
         </button>
       </div>
-      <div class="col-12 d-flex justify-content-between">
+      <div class="col-12 d-flex mt-5 justify-content-between">
         <div>
           <h5>Sprints</h5>
           <p>

@@ -5,8 +5,8 @@
     id="offcanvasLeft"
     aria-labelledby="offcanvasLeftLabel"
   >
-    <div class="offcanvas-header">
-      <h5 id="offcanvasLeftLabel">Projects</h5>
+    <div class="offcanvas-header ps-3">
+      <h1 class="text-center" id="offcanvasLeftLabel">Active Projects</h1>
       <button
         type="button"
         class="btn-close text-reset"
@@ -15,22 +15,32 @@
       ></button>
     </div>
     <div class="offcanvas-body">
-      <div class="d-flex justify-content-between border border-bottom">
-        <p>Name</p>
-        <p>Started</p>
+      <div
+        class="
+          d-flex
+          justify-content-between
+          border-bottom border-5 border-dark
+        "
+      >
+        <h3>Name</h3>
+        <h3>Started</h3>
       </div>
       <div v-for="p in projects" :key="p.id">
         <router-link :to="{ name: 'Project', params: { id: p.id } }">
           <div
             data-bs-dismiss="offcanvas"
-            class="d-flex justify-content-between selectable"
+            class="d-flex justify-content-between selectable my-3"
           >
-            <span>
-              {{ p.name }}
-            </span>
-            <span>
-              {{ p.createdAt }}
-            </span>
+            <h6>
+              <span class="">
+                {{ p.name }}
+              </span>
+            </h6>
+            <h6>
+              <span class="">
+                {{ dateFormat.format(new Date(p.createdAt)) }}
+              </span>
+            </h6>
           </div>
         </router-link>
       </div>
@@ -49,7 +59,12 @@ export default {
 
 
   setup() {
+    let dateFormat = new Intl.DateTimeFormat("en", {
+      timeStyle: "short",
+      dateStyle: "short",
+    });
     return {
+      dateFormat,
       projects: computed(() => AppState.projects)
     }
   }
