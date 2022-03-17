@@ -1,15 +1,15 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-info px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex text-dark align-items-center">
+      <div class="d-flex text-dark align-items-center justify-content-center">
         <i class="mdi mdi-notebook mdi-48px me-3"></i>
-        <h1>PlanIt</h1>
-        <!-- <img
+        <h1 class="text-center"><b> PlanIt</b></h1>
+      </div>
+      <!-- <img
           alt="logo"
           src="https://e7.pngegg.com/pngimages/739/529/png-clipart-project-management-software-project-planning-business-blue-text.png"
           height="45"
         /> -->
-      </div>
     </router-link>
     <button
       class="navbar-toggler"
