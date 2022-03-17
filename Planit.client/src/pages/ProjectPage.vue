@@ -111,6 +111,7 @@ export default {
       notes: computed(() => AppState.notes),
       projects: computed(() => AppState.projects),
       project: computed(() => AppState.activeProject),
+      account: computed(() => AppState.account),
 
       async deleteProject() {
         try {

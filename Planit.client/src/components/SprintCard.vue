@@ -9,7 +9,12 @@
       <h6 class="m-0 pt-1 ms-2">{{ weight }}</h6>
     </div>
     <div class="col-6 d-flex align-items-end flex-column">
-      <i class="mdi mdi-close mdi-24px selectable" title="Delete sprint"></i>
+      <i
+        v-if="account.id == sprint?.creatorId"
+        @click="deleteSprint"
+        class="mdi mdi-close mdi-24px selectable"
+        title="Delete sprint"
+      ></i>
 
       <button
         @click="pushId"
@@ -71,6 +76,7 @@ export default {
       weight: computed(() => tasksService.getWeight(props.sprint.id)),
       sprints: computed(() => AppState.sprints),
       tasks: computed(() => AppState.tasks),
+
       pushId() {
         AppState.activeSprint = props.sprint
         logger.log('[pushId]', AppState.activeSprint.id)
