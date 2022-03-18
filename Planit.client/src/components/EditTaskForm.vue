@@ -22,22 +22,22 @@
       placeholder="Task weight..."
       required
     />
-    <label for="isComplete">Task complete?</label>
-    <input
-      type="checkbox"
-      class="form-check-input"
-      name="isComplete"
-      id="isComplete"
-      value="checkedValue"
-      v-model="editable.isComplete"
-      required
-    />
-    <label for="sprintId">Sprint assignment:</label>
+    <div class="my-2">
+      <label for="isComplete" class="me-2">Task complete?</label>
+      <input
+        type="checkbox"
+        class="form-check-input"
+        name="isComplete"
+        id="isComplete"
+        value="checkedValue"
+        v-model="editable.isComplete"
+      />
+    </div>
     <div class="mb-3">
-      <label for="sprintId" class="form-label">Sprint Id</label>
+      <label for="sprintId" class="form-label">Sprint Assignment:</label>
       <select
         v-model="editable.sprintId"
-        class="form-control"
+        class="form-select"
         name="sprintId"
         id="sprintId"
         required
@@ -48,7 +48,6 @@
       </select>
     </div>
 
-    <label class="ps-2 form-check-label" for="isComplete"> Is Complete? </label>
     <div class="text-end">
       <button class="btn btn-info selectable">
         <i class="mdi mdi-plus"></i>

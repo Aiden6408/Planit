@@ -16,9 +16,9 @@
         <div class="row">
           <div class="d-flex justify-content-between col-12">
             <div>
-              <h5>Projects</h5>
+              <h3>Projects</h3>
               <p class="m-0">
-                A list of all projects created by {{ account.name }}
+                A list of all projects accessable to {{ account.name }}
               </p>
             </div>
             <div>
@@ -31,9 +31,9 @@
               </button>
             </div>
           </div>
-          <div class="col-4 border-bottom border-light pt-5">Name</div>
-          <div class="col-4 border-bottom border-light pt-5">Members</div>
-          <div class="col-4 border-bottom border-light pt-5">Created on</div>
+          <h4 class="col-4 border-bottom border-light pt-5">Name</h4>
+          <h4 class="col-4 border-bottom border-light pt-5">Creator</h4>
+          <h4 class="col-4 border-bottom border-light pt-5">Created on</h4>
           <div v-for="p in projects" :key="p.id" class="col-12">
             <ProjectCard :project="p" />
           </div>

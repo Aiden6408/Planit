@@ -1,8 +1,11 @@
 <template>
   <div class="row">
-    <div class="col-4 selectable" @click="goTo">{{ project.name }}</div>
-    <div class="col-4">Creator</div>
-    <div class="col-4">Created on</div>
+    <h5 class="col-4 selectable" @click="goTo">{{ project.name }}</h5>
+    <h5 class="col-4">
+      <img class="rounded img-small" :src="project.creator.picture" alt="" />
+      {{ project.creator.name }}
+    </h5>
+    <h5 class="col-4">{{ dateFormat.format(new Date(project.createdAt)) }}</h5>
   </div>
 </template>
 
@@ -23,7 +26,12 @@ export default {
   },
   setup(props) {
     const router = useRouter()
+    let dateFormat = new Intl.DateTimeFormat("en", {
+      timeStyle: "short",
+      dateStyle: "short",
+    });
     return {
+      dateFormat,
       goTo() {
         projectsService.setActive(props.project.id)
         logger.log('setting active', AppState.activeProject)
@@ -37,4 +45,8 @@ export default {
 
 
 <style lang="scss" scoped>
+.img-small {
+  height: 30px;
+  width: 30px;
+}
 </style>

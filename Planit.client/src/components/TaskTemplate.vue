@@ -1,18 +1,16 @@
 <template>
   <div class="row">
-    <div class="col-12">
+    <div
+      class="col-12 selectable"
+      title="Show task details"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasRight"
+    >
       <div class="d-flex">
-        <div
-          title="Show task details"
-          class="d-flex selectable"
-          @click="setActiveTask"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasRight"
-        >
+        <div class="d-flex" @click="setActiveTask">
           <div class="me-2">
             <i
               v-if="task.isComplete == true"
-              title="Task complete?"
               class="mdi mdi-checkbox-marked"
             ></i>
             <i
@@ -40,9 +38,8 @@
       </div>
       <div>Created on {{ date }}</div>
       <div class="d-flex">
-        <!-- FIXME  Stretch goal-->
-        <!-- <p>CommentCount</p>
-        <i class="mdi mdi-comment"></i> -->
+        <p class="me-2">{{ noteCount }}</p>
+        <i class="mdi mdi-comment me-4 sm-pad"></i>
         <p class="me-2">{{ task.weight }}</p>
         <i class="mdi mdi-weight"></i>
       </div>
@@ -58,6 +55,7 @@ import { logger } from "../utils/Logger"
 import { tasksService } from "../services/TasksService"
 import { useRoute } from "vue-router"
 import { AppState } from "../AppState"
+import { notesService } from "../services/NotesService"
 export default {
   props: {
     task: {
@@ -75,6 +73,7 @@ export default {
     return {
       date,
       account: computed(() => AppState.account),
+      noteCount: computed(() => notesService.noteCount(props.task.id)),
       setActiveTask() {
         AppState.activeSprint = props.task.sprint
         AppState.activeTask = props.task
@@ -97,4 +96,7 @@ export default {
 
 
 <style lang="scss" scoped>
+.sm-pad {
+  padding-top: 1px;
+}
 </style>

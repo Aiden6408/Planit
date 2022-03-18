@@ -6,20 +6,35 @@
     aria-labelledby="offcanvasRightLabel"
   >
     <div class="offcanvas-header">
-      <div class="d-flex fs-5" id="offcanvasRightLabel">
-        <span class="me-2 clip-text">
-          {{ activeSprint.name }}
-        </span>
-        <span class="clip-text"> > {{ activeTask.name }} </span>
+      <div
+        class="
+          w-100
+          d-flex
+          fs-5
+          border-bottom border-2 border-dark
+          justify-content-between
+        "
+        id="offcanvasRightLabel"
+      >
+        <div class="d-flex">
+          <span class="me-2">
+            {{ activeSprint?.name }}
+          </span>
+          <span class="clip-text">> {{ activeTask?.name }} </span>
+        </div>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+          title="Close"
+        ></button>
       </div>
-      <button
-        type="button"
-        class="btn-close text-reset"
-        data-bs-dismiss="offcanvas"
-        aria-label="Close"
-        title="Close"
-      ></button>
     </div>
+    <h5 class="text-center">
+      This task has <span v-if="!activeTask?.isComplete">not </span>been marked
+      complete.
+    </h5>
     <div class="offcanvas-body">
       <div class="text-center border-bottom border-2 border-dark">Notes</div>
       <h5 class="mt-5">Add a note..</h5>

@@ -20,6 +20,10 @@ class NotesService {
     AppState.notes = AppState.notes.filter(n => n.id !== noteId)
 
   }
+  noteCount(id) {
+    const myNotes = AppState.notes.filter(n => n.taskId == id)
+    return myNotes.length
+  }
 }
 
 export const notesService = new NotesService()

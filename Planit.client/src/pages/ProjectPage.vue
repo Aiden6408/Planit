@@ -37,8 +37,8 @@
         <div>
           <h1><b> Sprints </b></h1>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente
-            aliquid
+            Set period of time during which specific work has to be completed
+            and made ready for review.
           </p>
         </div>
         <div>
