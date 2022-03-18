@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit" class="mb-3">
+    <label for="name">Task name:</label>
     <input
       v-model="editable.name"
       type="text"
@@ -11,6 +12,7 @@
       minlength="3"
       maxlength="20"
     />
+    <label for="weight">Task weight:</label>
     <input
       v-model="editable.weight"
       type="text"
@@ -30,6 +32,7 @@
       v-model="editable.isComplete"
       required
     />
+    <label for="sprintId">Sprint assignment:</label>
     <div class="mb-3">
       <label for="sprintId" class="form-label">Sprint Id</label>
       <select

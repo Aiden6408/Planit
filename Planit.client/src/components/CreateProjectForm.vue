@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit" class="mb-3">
+    <label for="name">Project name:</label>
     <input
       v-model="editable.name"
       type="text"
@@ -11,6 +12,7 @@
       minlength="3"
       maxlength="20"
     />
+    <label for="description">Project description:</label>
     <input
       v-model="editable.description"
       type="text"

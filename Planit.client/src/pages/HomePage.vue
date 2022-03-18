@@ -16,8 +16,10 @@
         <div class="row">
           <div class="d-flex justify-content-between col-12">
             <div>
-              <h5>Title</h5>
-              <p class="m-0">Description</p>
+              <h5>Projects</h5>
+              <p class="m-0">
+                A list of all projects created by {{ account.name }}
+              </p>
             </div>
             <div>
               <button
@@ -75,6 +77,7 @@ export default {
 
     return {
       user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
       projects: computed(() => AppState.projects),
       async createProject() {
         try {

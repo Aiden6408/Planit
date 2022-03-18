@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit" class="mb-3">
+    <label for="name">Sprint name:</label>
     <input
       v-model="editable.name"
       type="text"
