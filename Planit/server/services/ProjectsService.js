@@ -2,8 +2,8 @@ import { BadRequest, Forbidden } from "@bcwdev/auth0provider/lib/Errors";
 import { dbContext } from "../db/DbContext";
 
 class ProjectsService {
-    async getAll(query = {}) {
-        const projects = await dbContext.Projects.find(query).populate('creator')
+    async getAll(id) {
+        const projects = await dbContext.Projects.find({ creatorId: id }).populate('creator')
         return projects
     }
     async getById(id) {
