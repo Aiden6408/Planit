@@ -20,6 +20,6 @@ socketProvider.initialize(httpServer)
 DbConnection.connect()
 
 // Start Server
-httpServer.listen(port, () => {
+app.listen(port, () => {
   logger.log(`[SERVING ON PORT: ${port}]`)
 })
