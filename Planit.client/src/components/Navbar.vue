@@ -1,9 +1,9 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-info px-3">
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex text-dark align-items-center justify-content-center">
-        <i class="mdi mdi-notebook mdi-48px me-3"></i>
-        <h1 class="text-center"><b> PlanIt</b></h1>
+        <i class="mdi mdi-notebook mdi-48px text-info me-3"></i>
+        <h1 class="text-center text-info"><b> PlanIt</b></h1>
       </div>
       <!-- <img
           alt="logo"
@@ -30,7 +30,7 @@
           @click="login"
           v-if="!user.isAuthenticated"
         >
-          Login
+          <p class="text-light">Login</p>
         </button>
 
         <div class="dropdown my-2 my-lg-0" v-else>
@@ -46,7 +46,8 @@
               height="40"
               class="rounded bigger"
             />
-            <span class="mx-3 text-dark">{{ account.name }}</span>
+
+            <span class="mx-3 text-light">{{ account.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"

@@ -1,11 +1,6 @@
 <template>
   <div class="row">
-    <div
-      class="col-12 selectable"
-      title="Show task details"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasRight"
-    >
+    <div class="col-12">
       <div class="d-flex">
         <div class="d-flex" @click="setActiveTask">
           <div class="me-2">
@@ -26,20 +21,25 @@
           @click="setActiveTask"
           data-bs-toggle="modal"
           data-bs-target="#edit-task"
-          class="mdi mdi-pencil me-2 selectable text-warning"
+          class="mdi mdi-pencil me-2 selectable text-info"
           title="Edit Task"
         ></div>
         <i
           v-if="task.creatorId == account?.id"
           @click="deleteTask"
           title="Delete Task"
-          class="mdi mdi-delete-forever selectable text-danger"
+          class="mdi mdi-delete-forever selectable text-info"
         ></i>
       </div>
       <div>Created on {{ date }}</div>
       <div class="d-flex">
         <p class="me-2">{{ noteCount }}</p>
-        <i class="mdi mdi-comment me-4 sm-pad"></i>
+        <i
+          title="Show task details"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          class="mdi mdi-comment selectable me-4 sm-pad"
+        ></i>
         <p class="me-2">{{ task.weight }}</p>
         <i class="mdi mdi-weight"></i>
       </div>

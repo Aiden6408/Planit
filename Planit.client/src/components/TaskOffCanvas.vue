@@ -81,12 +81,15 @@ export default {
     const route = useRoute()
     const editable = ref({})
     return {
+
       editable,
+
       activeSprint: computed(() => AppState.activeSprint),
       activeTask: computed(() => AppState.activeTask),
       notes: computed(() => AppState.notes),
       async handleSubmit() {
         try {
+          debugger
           editable.value.taskId = AppState.activeTask.id
           await notesService.createNote(route.params.id, editable.value)
           editable.value = {}

@@ -4,13 +4,14 @@ import Pop from "../utils/Pop"
 import { api } from "./AxiosService"
 
 class NotesService {
-  async getNotes(id) {
-    const res = await api.get(`api/projects/${id}/notes`)
+  async getNotes(taskId) {
+    const res = await api.get(`api/projects/${taskId}/notes`)
     logger.log('[getNotes]', res.data)
     AppState.notes = res.data
   }
-  async createNote(id, body) {
-    const res = await api.post(`api/projects/${id}/notes`, body)
+  async createNote(taskId, body) {
+
+    const res = await api.post(`api/projects/${taskId}/notes`, body)
     AppState.notes = [...AppState.notes, res.data]
     logger.log('added notes to appstate', res.data)
   }

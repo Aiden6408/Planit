@@ -12,7 +12,7 @@
       <i
         v-if="account.id == sprint?.creatorId"
         @click="deleteSprint"
-        class="mdi mdi-close mdi-24px selectable text-danger"
+        class="mdi mdi-close mdi-24px selectable text-info"
         title="Delete sprint"
       ></i>
 
