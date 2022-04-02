@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "start": "npm start"
   },
   "dependencies": {
     "@bcwdev/auth0provider-client": "^0.0.9",
